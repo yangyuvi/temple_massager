@@ -23,7 +23,6 @@
 #include "task.h"
 #include "queue.h"
 #include "event_groups.h"
-#include "common.h"
 #include "DataType.h"
 #include "NVIC.h"
 #include "RCC.h"

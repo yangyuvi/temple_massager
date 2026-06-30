@@ -21,10 +21,12 @@
 #include "stm32f10x_conf.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "ADC.h"
 
 /*********************************************************************************************************
 *                                              宏定义
 *********************************************************************************************************/
+#define ADC_BATTERY         2
 #define TASK_CHG_PRIO       4
 #define TASK_CHG_STACK_SIZE 512
 static TaskHandle_t s_chgTaskHandle = NULL;
@@ -122,8 +124,15 @@ static BatState_t PowerGetStatus(void)
 static void ChargeTask(void *para)
 {
   BatState_t status;
+  u16 adc;
+  float voltage;
   while (1)
   {
+    //电量转换
+    adc = GetADCVal(ADC_BATTERY);
+    voltage = adc * 3.3f / 4095.0f * 2;
+
+    //充电状态
     status = PowerGetStatus();
     switch (status)
     {

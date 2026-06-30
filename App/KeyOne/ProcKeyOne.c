@@ -10,19 +10,13 @@
 #define TASK_KEY_PRIO       1         //优先级
 
 static TaskHandle_t KeyTaskHandle = NULL;
-// SystemMode g_currentMode;
 static PwrState_t pwrState = PWR_ON;
 
 void OnKey1Event(KeyEvent event)
 { 
-//  AppMsg msg;
   switch (event)
   {
   case KEY_EVENT_UP:
- // msg.newMode = (g_currentMode+1) % SYS_MODE_MAX;    //模式切换
-
-//    xQueueSend(g_msgQueue, &msg, 0);
- // g_currentMode = msg.newMode;
   break;
 
   case KEY_EVENT_LONG:

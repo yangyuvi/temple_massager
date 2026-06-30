@@ -36,5 +36,6 @@
 void InitADC(void);  //³õÊ¼»¯ADCÄ£¿é
 
 u16 GetADCVal(u8 ch);
+void ADCFilter(void);
 
 #endif

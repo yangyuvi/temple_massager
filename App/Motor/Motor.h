@@ -8,21 +8,25 @@
 
 #include "DataType.h"
 
-//电流保护阈值 ma
-#define CURRENT_LIMIT          800
+
+#define MOTOR_STALL_ADC_THRESHOLD           800         //失速阈值 
+#define MOTOR_INRUSH_TIME_MS                80          //启动保护时间
+#define MOTOR_STALL_TIME_MS                 50          //失速确认时间
+#define MOTOR_STALL_COUNT                   5
 
 
 typedef enum{
-    MOTOR_FORWARD,            //正转 IN1=PWM IN2=0
-    MOTOR_REVERSE,            //反转 IN1=0 IN2=PWM
-    MOTOR_STOP,               //停止 IN1=1 IN2=1
+    MOTOR_STOP,               //停止
+    MOTOR_STARTING,
+    MOTOR_RUNNING,            
     MOTOR_FAULT               //过流或堵转
 }MotorState;
 
 typedef enum
 {
     MOTOR_LEFT = 0,
-    MOTOR_RIGHT
+    MOTOR_RIGHT,
+    MOTOR_NUM
 }MotorId;
 
 extern MotorState g_motorState;
